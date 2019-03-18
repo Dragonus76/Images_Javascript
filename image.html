@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Image</title>
+    <style src = /home/dragonus/Images_Javascript/style.css></style>
+  </head>
+  <body>
+
+    <div id="overlay"></div>
+
+    <p>
+
+      <a href="/home/dragonus/Images_Javascript/image/1.jpg" title= "BDSM ART" ><img src= "/home/dragonus/Images_Javascript/image/1_min.jpg" alt="Miniature"/></a>
+      <a href="/home/dragonus/Images_Javascript/image/2.jpg" title= "BDSM ART" ><img src= "/home/dragonus/Images_Javascript/image/2_min.jpg" alt="Miniature"/></a>
+      <a href="/home/dragonus/Images_Javascript/image/3.jpg" title= "BDSM ART" ><img src= "/home/dragonus/Images_Javascript/image/3_min.jpg" alt="Miniature"/></a>
+      <a href="/home/dragonus/Images_Javascript/image/4.jpg" title= "BDSM ART" ><img src= "/home/dragonus/Images_Javascript/image/4_min.jpg" alt="Miniature"/></a>
+      
+
+    </p>
+    <script type="text/javascript">
+
+
+        var links = document.getElementsByTagName('a'),
+          linkslen = links.length;
+
+          for (var i = 0; i < linkslen; i++){
+
+            links[i].addEventListener('click', function(e){
+
+              e.preventDefault(); // On bloque la rediction 
+
+              // On appel notre fonction pour afficher les images
+
+              // cureenTarget est utilisé pour cibler le lien et non l'image 
+              displayImg(e.currentTarget);
+
+            });
+          }
+
+
+
+
+      function displayImg(link){
+
+        var img = new Image();
+          overlay = document.getElementById('overlay');
+
+        img.addEventListener('load', function(){
+
+          // Affiche de l'image 
+          overlay.innerHTML = '';
+          overlay.appendChild(img);
+
+
+        });
+
+        img.src = link.href;
+        overlay.style.display = 'block';
+        overlay.innerHTML = '<span>Chargement en cours...</span>';
+      }
+
+
+      document.getElementById('overlay').addEventListener('click',function(e){
+
+        // currentTarget est utilsé pour cibler l'overlay et non l'image 
+
+        e.currentTarget.style.display ='none';
+
+      });
+
+    
+
+
+
+
+    </script>
+
+  </body>
+</html>
